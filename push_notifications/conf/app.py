@@ -144,7 +144,7 @@ class AppConfig(BaseConfig):
 			pass
 		try:
 			check_apns_certificate(content)
-		except:
+		except Exception as e:
 			raise ImproperlyConfigured(
 				"The APNS certificate file %r is not readable: %s" % (certfile, e)
 			)
