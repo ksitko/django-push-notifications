@@ -141,12 +141,13 @@ class AppConfig(BaseConfig):
 				content = f.read()
 				check_apns_certificate(content)
 		except Exception as e:
-			try:
-				check_apns_certificate(content)
-			except:
-				raise ImproperlyConfigured(
-					"The APNS certificate file at %r is not readable: %s" % (certfile, e)
-				)
+			pass
+		try:
+			check_apns_certificate(content)
+		except:
+			raise ImproperlyConfigured(
+				"The APNS certificate file %r is not readable: %s" % (certfile, e)
+			)
 
 	def _validate_fcm_config(self, application_id, application_config):
 		allowed = (
